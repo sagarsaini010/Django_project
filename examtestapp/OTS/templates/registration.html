@@ -1,0 +1,30 @@
+{% extends 'main.html' %}
+
+{% block title %}OTS- Registartion status {% endblock %}
+
+
+{% block top %}
+<a href="{% url 'OTS:registrationForm' %}">SignUp</a>
+<a href="{% url 'OTS:login' %}">Login</a>
+
+{% endblock %}
+
+
+{% block content %}
+{% if userStatus == 1 %}
+    <div class="userStatus">
+        <p>Sorry, Username already exists, please try a different one.</p>
+        <a href="{% url 'OTS:registrationForm' %}">Back to Candidate Registartion Form</a>
+    </div>
+{% elif userStatus == 2 %}
+    <div class="userStatus">
+        <p>Congratulations!!, User created successfully.</p>
+        <a href="{% url 'OTS:login' %}">Login</a>
+    </div>
+{% elif userStatus == 3 %}
+    <div class="userStatus">
+        <p>Oops!!, Improper Request.</p>
+        <a href="{% url 'OTS:registrationForm' %}">Back to Candidate Registartion Form</a>
+    </div>
+{% endif %}
+{% endblock %}

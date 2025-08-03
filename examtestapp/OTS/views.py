@@ -28,14 +28,34 @@ def candidateRegistration(request):
     context = {
         'userStatus' : userStatus
     }
-    res = render(request,'registration.htnl',context)
+    res = render(request,'registration.html',context)
     return res
 
 def loginView(request):
-    pass
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        candidate=Candidate.objects.filter(username=username,password=password)
+        if len(candidate)==0:
+            loginError='Invalid Username or Password'
+            res = render(request,'login.html',{'loginError':loginError})
+        else:
+            #login Success
+            request.session['username'] =candidate[0].username
+            request.session['name']= candidate[0].name
+            res=HttpResponseRedirect("home")
+    else:
+        res = render(request,'login.html')
+    return res
+    
 
 def candidateHome(request):
-    pass
+    if 'name' not in request.session.keys():
+        res = HttpResponseRedirect('login')
+    else:
+        res = render(request,'home.html')
+    return res
+
 
 def testPaper(request):
     pass
