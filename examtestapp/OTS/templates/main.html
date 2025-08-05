@@ -1,11 +1,15 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title%}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'theme.css' %}">
+    <link rel="stylesheet" href="{% static 'formstyle.css' %}">
+    <link rel="stylesheet" href="{% static 'buttonstyle.css' %}">
 </head>
-<body style="background-color: aqua;">
+<body>
     <div class="top">
         <div class="sitename"><h1>
             Online Testing System
